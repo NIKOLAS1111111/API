@@ -28,9 +28,9 @@ def search_products(query: str, limit: int = 5):
     sql = """
         SELECT
             pt.id,
-            pt.name ->> "fr_FR", "en_US" AS name,
+            pt.name ->> 'en_US' AS name,
             pt.list_price,
-            pt.description_sale ->> AS description,
+            pt.description_sale ->> 'en_US' AS description,
             pc.complete_name As category,
             COALESCE(SUM(sq.quantity), 0) AS stock_qty
         FROM product_template pt
